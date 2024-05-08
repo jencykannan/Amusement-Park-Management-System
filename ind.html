@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Latitude and Longitude from Map</title>
+    <!-- Include Leaflet CSS and JavaScript -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        /* Set map container size */
+        #map {
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Get Latitude and Longitude from Map</h1>
+    <!-- Map container -->
+    <div id="map"></div>
+    <p id="location"></p>
+
+    
+    <button onclick="calculateTime('walking')">🚶</button>
+    <button onclick="calculateTime('cycling')">🚴</button>
+    <button onclick="calculateTime('car')">🚗</button>
+
+    <script>
+        var lat1,lat2,lon1,lon2,latitude,longitude,end_latitude,end_longitude,distance;
+        source();
+        function source(){
+            var map = L.map('map').setView([0, 0], 13); // Initialize the map
+
+        // Add a tile layer (OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Get current location using Geolocation API
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+
+                map.setView([latitude, longitude], 13);
+
+                // Add a marker at the current location
+                L.marker([latitude, longitude]).addTo(map)
+                    .bindPopup('Your current location').openPopup();
+            },
+            function (error) {
+                // Handle errors
+                showError(error);
+            }
+        );
+        var marker;
+
+        map.on('click', function (e) {
+            
+           end_latitude = e.latlng.lat;
+           end_longitude = e.latlng.lng;
+           if (marker) {
+                map.removeLayer(marker);
+            }
+            
+           
+           
+            marker=L.marker([end_latitude, end_longitude]).addTo(map)
+                    .bindPopup('Your destination').openPopup();
+
+                calculateDistance(latitude,longitude,end_latitude,end_longitude);
+
+            // Display the coordinates
+            document.getElementById("location").innerHTML = "Latitude: " + end_latitude + "<br>Longitude: " + end_longitude;
+        });
+    }
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+        
+        function calculateDistance(lat1,lon1,lat2,lon2) {
+      
+
+      const R = 6371; // Earth's radius in kilometers
+      const dLat = toRadians(lat2 - lat1);
+      const dLon = toRadians(lon2 - lon1);
+
+      const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      distance = R * c;
+
+      alert(distance);
+    }
+
+    function toRadians(degrees) {
+      return degrees * (Math.PI / 180);
+    }
+
+    function calculateTime(mode) {
+            // Get the distance from the user inpu
+
+            // Check if the input is a valid number
+            if (isNaN(distance)) {
+                alert("Please enter a valid distance.");
+                return;
+            }
+
+            // Calculate time for different modes of transport
+            var speed;
+            var modeName;
+
+            switch (mode) {
+                case 'walking':
+                    speed = 5; // in km/h
+                    modeName = 'Walking';
+                    break;
+                case 'cycling':
+                    speed = 20; // in km/h
+                    modeName = 'Cycling';
+                    break;
+                case 'car':
+                    speed = 60; // in km/h
+                    modeName = 'Car';
+                    break;
+                default:
+                    alert("Invalid mode of transport.");
+                    return;
+            }
+
+            var timeinhours = distance / speed;
+            var timeinminutes = timeinhours*60;
+            // Display the result
+            var resultMessage = modeName + " Time: "+ Math.floor(timeinhours) + " hours and " + Math.round(timeinminutes % 60) + " minutes";
+            alert(resultMessage);
+        }
+
+
+    
+        
+    </script>
+</body>
+</html>

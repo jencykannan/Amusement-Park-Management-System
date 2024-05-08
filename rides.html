@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <h1 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-weight: bold;text-align: center;">Rides</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            
+        }
+
+        .image {
+            flex: 1;
+            overflow: hidden; /* Ensure the image doesn't exceed its container */
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .description {
+            flex: 1;
+            padding: 20px;
+            background-color: #f2f2f2;
+            text-align: justify;
+            background-color:lightskyblue;
+        }
+
+        .description p {
+            font-weight: bold;
+        }
+    </style>
+    <title>Image and Description</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="image">
+            <img src="cup.jpg" alt="Image Description">
+        </div>
+        <div class="description">
+            <p>On the road to excitement, every twist is a turn for the better!</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="description" style="background-color:lightyellow;">
+            <p style="font-family: sans-serif;font-size:1 px;font-weight: bold;text-align: center;">Waves of excitement: Where the fun never dries up!</p>
+        </div>
+        
+        <div class="image">
+            <img src="water.jpg" alt="Image Description">
+        </div>
+        
+    </div>
+    <div class="container">
+        <div class="image" >
+            <img src="thrill.jpg" alt="Image Description">
+        </div>
+        <div class="description" style="background-color:lightpink;">
+            <p>The only limit is your imagination on these pulse-pounding thrill rides.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="description" style="background-color:rgb(92, 170, 92);">
+            <p>Where the fun is pint-sized, but the joy is larger than life!.</p>
+        </div>
+        
+        <div class="image">
+            <img src="train.jpg" alt="Image Description">
+        </div>
+        
+    </div>
+
+</body>
+</html>

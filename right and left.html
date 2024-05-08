@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+    
+    .slider-container-right {
+      position: fixed;
+      top: 0;
+      width: 0; /* Initial width set to 0 */
+      height: 100%;
+      right:0;
+      overflow: hidden;
+      background-color: #f1f1f1;
+      transition: width 0.5s ease-in-out;
+    }
+    .slider-container-left{
+      position: fixed;
+      top: 0;
+      width: 0; /* Initial width set to 0 */
+      left:0;
+      height: 100%;
+      overflow: hidden;
+      background-color: #f1f1f1;
+      transition: width 0.5s ease-in-out;
+    }
+    
+    .slider-content {
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .slider-container-left.active {
+      width: 50%; /* Expand to cover half of the page when active */
+      left: 0;
+    }
+
+    .slider-container-right.active {
+      width: 50%; /* Expand to cover half of the page when active */
+      right: 0;
+    }
+
+    .toggle-left{
+      position: fixed;
+      top: 20px;
+      cursor: pointer;
+      font-size: 24px;
+      left:20px;
+    }
+
+    .toggle-right {
+      position: fixed;
+      top: 20px;
+      cursor: pointer;
+      font-size: 24px;
+      right:20px;
+    }
+
+  
+    .button-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .button {
+      margin-bottom: 10px;
+      padding: 15px 30px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div class="slider-container-left" id="slider-left">
+  <div class="slider-content">
+    <div class="button-container">
+      <button class="button" onclick="handleButtonClick(1, 'left')">Button 1</button>
+      <button class="button" onclick="handleButtonClick(2, 'left')">Button 2</button>
+      <button class="button" onclick="handleButtonClick(3, 'left')">Button 3</button>
+    </div>
+  </div>
+</div>
+
+<div class="slider-container-right" id="slider-right">
+  <div class="slider-content">
+    <div class="button-container">
+      <button class="button" onclick="handleButtonClick(1, 'right')"> 1</button>
+      <button class="button" onclick="handleButtonClick(2, 'right')">Button 2</button>
+      <button class="button" onclick="handleButtonClick(3, 'right')">Button 3</button>
+    </div>
+  </div>
+</div>
+
+<div class="toggle-left" onclick="toggleSlider('left')">☰ Left</div>
+<div class="toggle-right" onclick="toggleSlider('right')">☰ Right</div>
+
+<script>
+  function toggleSlider(side) {
+    const sliderLeft = document.getElementById('slider-left');
+    const sliderRight = document.getElementById('slider-right');
+
+    if (side === 'left') {
+      sliderLeft.classList.toggle('active');
+      
+    } else if (side === 'right') {
+      sliderRight.classList.toggle('active');
+      
+    }
+  }
+
+  function handleButtonClick(buttonNumber, side) {
+    alert("Button " + buttonNumber + " clicked in " + side + " panel!");
+    // Add your logic here for handling button clicks
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<html>
+<?php
+session_start();
+
+        $useremail=$_SESSION['em'];
+   
+    ?>
+    <head>
+        <style>
+            * {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  margin-top: 15%;
+  display: none;
+  justify-content: center;
+  text-align: center;
+  outline:none;
+  border-radius: 20px;
+  border: 2px solid rgba(255,255,255,2);
+  padding: 50px;
+  }
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+.link {
+    justify-content: center;
+    text-align: center;
+}
+body{
+            background-image: url('back.jpg');
+             background-size:cover;
+            background-repeat:no-repeat;
+        }
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+table,th,td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table {
+  background-color: #D6EEEE;
+}
+
+table{
+  width:50%;
+}
+
+th{
+  height:70px;
+  font-weight: bold;
+  font-size:30px;
+}
+
+tr{
+  height: 40px;
+}
+
+input[type="button"]{
+    position: absolute;
+    top:50%;
+    background-color: #0a0a23;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+}
+
+input[type="button"]:hover {
+      background-color:#002ead;
+      transition: 0.7s;
+  }
+
+  button {
+            background-color: dodgerblue; 
+            color: white; 
+            padding: 10px 15px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 16px; 
+        }
+
+        /* Hover effect */
+        button:hover {
+            background-color: darkblue; 
+        }
+        </style>
+    </head>
+
+<body>
+
+  <center>
+  <table>
+  <tr>
+    <th>Day</th>
+    <th>Park Timings</th>
+  </tr>
+  <tr>
+    <th>Weekdays</th>
+    <th>10:00 AM to 06:00 PM</th>
+  </tr>
+  <tr>
+    <th>Weekend and Holidays</th>
+    <th>10:00 AM to 07:00 PM</th>
+  </tr>
+  </table>
+</center>
+<center><br>
+<button type="button" onclick="open1()">BOOK NOW!</button>
+      </center>
+<div class="slideshow-container">
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides" >
+    <div class="numbertext">1 / 5</div>
+    <img src="img1.jpg" style="width:800px; height:500px">
+    <div class="text"></div>
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 5</div>
+    <img src="img2.jpg" style="width:800px; height:500px">
+    <div class="text"></div>
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 5</div>
+    <img src="img3.jpg" style="width:800px; height:500px">
+    <div class="text"></div>
+  </div>
+
+  
+  <div class="mySlides">
+    <div class="numbertext">4 / 5</div>
+    <img src="img4.jpg" style="width:800px; height:500px">
+    <div class="text"></div>
+  </div>
+
+  
+  <div class="mySlides">
+    <div class="numbertext">5 / 5</div>
+    <img src="img5.jpg" style="width:800px; height:500px">
+    <div class="text"></div>
+  </div>
+
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+  <span class="dot" onclick="currentSlide(4)"></span>
+  <span class="dot" onclick="currentSlide(5)"></span>
+</div>
+</body>
+
+
+<script>
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+function open1()
+{
+  window.open("http://localhost/db%20project/transaction.php");
+}
+
+</script>
+
+</html>
+    
+

@@ -1,0 +1,31 @@
+<!-- form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Form</title>
+</head>
+<body>
+
+    <h2>Your Form</h2>
+
+    <form action="submit_form.php" method="post">
+        <!-- Retrieve details from local storage -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Set values from local storage to the form fields
+        document.getElementById('name').value = localStorage.getItem('name') || '';
+        document.getElementById('email').value = localStorage.getItem('email') || '';
+    </script>
+
+</body>
+</html>

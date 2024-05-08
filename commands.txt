@@ -1,0 +1,60 @@
+cd C:\xampp\mysql\bin
+mysql -u root
+
+create table visitor(name varchar(20), phone varchar(10), email varchar(30), password varchar(30));
+
+ alter table visitor add primary key (email);
+
+alter table visitor modify column email varchar(30) not null;
+alter table visitor add column loyalty_pts int default 0;
+
+create table transaction(t_id int primary key auto_increment,adult int, child int, total int,dateandtime datetime default current_timestamp,email varchar(30),foreign key(email) references signup(email));
+
+create table orders(email varchar(30), dish_number int, quantity int, amount int,total_amount int);
+
+create table staff(staff_name varchar(30),staff_id int primary key,email varchar(30),s_password varchar(
+20));
+
+insert into staff values('nikhil',1,'nikhil1@gmail.com','nick');
+
+CREATE TABLE lockers (
+     locker_id INT PRIMARY KEY,reserved BOOLEAN DEFAULT FALSE );
+alter table lockers add email varchar(30);
+alter table lockers add foreign key(email) references signup(email);
+
+
+INSERT INTO lockers (locker_id, reserved) VALUES(1, FALSE);
+insert into lockers values(2,FALSE);
+insert into lockers values(3,FALSE);
+insert into lockers values(4,FALSE);
+
+insert into staff values('leena',2,'leena1@gmail.com','leena');
+insert into staff values('preeti',3,'preeti1@gmail.com','preeti');
+
+
+CREATE TABLE rides(r_id int primary key,R_name varchar(30),R_type varchar(20),duration int,R_loc varchar(30),age_restriction int);
+
+INSERT INTO rides VALUES (1, 'Maverick', 'Thrill', 15, 'Adventure Land', 10);
+INSERT INTO rides VALUES (2, 'Tea Cups', 'Family', 5, 'Fantasy Land', 3);
+INSERT INTO rides VALUES (3, 'ScaryHouse', 'Dark', 15, 'Horror Land', 12);
+INSERT INTO rides VALUES (4, 'Ferris Wheel', 'View', 30, 'Panorama Park', 5);
+INSERT INTO rides VALUES (5, 'Bumper Cars', 'Fun', 10, 'Joy City', 6);
+INSERT INTO rides VALUES (6, 'Drop Tower', 'Thrill', 45, 'Adventure Land', 16);
+INSERT INTO rides VALUES (7, 'Rodeo', 'Thrill', 60, 'Frontier Village', 16);
+INSERT INTO rides VALUES (8, 'KidCoaster', 'Family', 20, 'Fantasy Land', 3);
+INSERT INTO rides VALUES (9, 'Pirate Ship', 'Swing', 15, 'Seaside Cove', 8);
+INSERT INTO rides VALUES (10, 'Carousel', 'View', 15, 'Panorama Park', 3);
+INSERT INTO rides VALUES (11,'Sky screamer','Thrill','15,'Adventure land',40);
+
+
+CREATE TRIGGER update_loyalty_points
+AFTER INSERT ON orders
+FOR EACH ROW
+BEGIN
+    DECLARE points_to_add INT;
+    SET points_to_add = ROUND(NEW.total_amount / 10); -- Assume 1 point for every $10 spent
+    UPDATE visitors
+    SET loyalty_points = loyalty_points + points_to_add
+    WHERE email = NEW.email;
+END;
+/

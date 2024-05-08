@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("https://wallpapercrafter.com/th8001/598791-sunset-beach-ferris-wheel-UK-pier-Blackpool-birds.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-size: 20px;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #818181;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+
+
+        .signup-container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: transparent;
+            backdrop-filter: blur(20px);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .signup-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .signup-form input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .signup-form button {
+            width: 50%;
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #434343;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .signup-form button:hover {
+            background-color: #333;
+        }
+
+        @media screen and (max-width: 480px) {
+            .sidenav {
+                width: 100%;
+                text-align: center;
+                padding-top: 20px;
+            }
+
+            .sidenav a {
+                padding: 8px;
+                display: inline-block;
+            }
+
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidenav">
+    <a href="#">Home</a>
+    <a href="ad.php">Admin</a>
+    <a href="#">Gallery</a>
+    <a href="mg.php">Services</a>
+    <a href="bg.php">Sample videos</a>
+    <a href="dg.php">Instructions</a>
+    <a href="#">Contact</a>
+    <a href="https://webdevtrick.com" target="_blank">About</a>
+</div>
+<div class="signup-container">
+    <h2>Sign Up</h2>
+    <form class="signup-form" method="post">
+        <input type="text" placeholder="enter name" name="na">
+        <input type="text" placeholder="enter phno" name="no">
+        <input type="email" placeholder="enter email" name="em">
+        <input type="password" placeholder="enter password" name="pass">
+        <button type="submit" name="signup">Sign Up</button>
+    </form>
+</div>
+
+<?php
+error_reporting(E_ALL & ~E_WARNING);
+if (isset($_POST["b"])) {
+    header("location: sample.php");
+}
+?>
+
+</body>
+</html>

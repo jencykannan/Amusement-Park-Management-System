@@ -1,0 +1,34 @@
+<!-- main.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+</head>
+<body>
+
+    <h1>Main Page Content</h1>
+
+    <p>Click the button below to open the form in a new page:</p>
+
+    <!-- Button to open the form page -->
+    <button onclick="openForm()">Open Form</button>
+
+    <script>
+        function openForm() {
+            // Get entered details from the form
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+
+            // Store details in local storage
+            localStorage.setItem('name', name);
+            localStorage.setItem('email', email);
+
+            // Open the form page in a new tab or window
+            window.open('form.html', '_blank');
+        }
+    </script>
+
+</body>
+</html>

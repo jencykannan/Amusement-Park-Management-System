@@ -1,0 +1,131 @@
+Microsoft Windows [Version 10.0.22621.2861]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\monak>cd C:\xampp\mysql\bin
+
+C:\xampp\mysql\bin>c:\xampp\mysql\bin
+'c:\xampp\mysql\bin' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database park;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [(none)]> use park;
+Database changed
+MariaDB [park]> create table signup;
+ERROR 1113 (42000): A table must have at least 1 column
+MariaDB [park]> create table signup(name varchar(20), no varchar(10), email email, password varchar(30));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' password varchar(30))' at line 1
+MariaDB [park]> create table signup(name varchar(20), no varchar(10), email varchar(30), password varchar(30));
+Query OK, 0 rows affected (0.023 sec)
+
+MariaDB [park]> select *
+    ->  from signup
+    -> ;
+Empty set (0.013 sec)
+
+MariaDB [park]> select * from signup;
+Empty set (0.001 sec)
+
+MariaDB [park]> create table signup(name varchar(20), phone varchar(10), email varchar(30), password varchar(30));
+ERROR 1050 (42S01): Table 'signup' already exists
+MariaDB [park]> drop table signup;
+Query OK, 0 rows affected (0.018 sec)
+
+MariaDB [park]> create table signup(name varchar(20), phone varchar(10), email varchar(30), password varchar(30));
+Query OK, 0 rows affected (0.024 sec)
+
+MariaDB [park]> select * from signup;
+Empty set (0.002 sec)
+
+MariaDB [park]> drop table signup;
+Query OK, 0 rows affected (0.018 sec)
+
+MariaDB [park]> create table signup(name varchar(20), phone varchar(10), email varchar(30), password varchar(30));
+Query OK, 0 rows affected (0.023 sec)
+
+MariaDB [park]> select * from signup;
+Empty set (0.001 sec)
+
+MariaDB [park]> select * from signup;
++------+------------+-------+----------+
+| name | phone      | email | password |
++------+------------+-------+----------+
+| mona |            |       |          |
+| mona | 6374131854 |       | hello    |
++------+------------+-------+----------+
+2 rows in set (0.001 sec)
+
+MariaDB [park]> select * from signup;
++------+------------+-------+----------+
+| name | phone      | email | password |
++------+------------+-------+----------+
+| mona |            |       |          |
+| mona | 6374131854 |       | hello    |
+| mona | 6374131854 |       | mona     |
++------+------------+-------+----------+
+3 rows in set (0.001 sec)
+
+MariaDB [park]> alter table signup add constraint pk1 primary key(email);
+ERROR 1062 (23000): Duplicate entry '' for key 'PRIMARY'
+MariaDB [park]> alter table signup add constraint pk1 primary key('email');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''email')' at line 1
+MariaDB [park]> alter table signup add constraint primary key('email');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''email')' at line 1
+MariaDB [park]> alter table signup add constraint primary key ('email');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''email')' at line 1
+MariaDB [park]> alter table signup add constraint primary key email;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [park]> alter table signup add constraint primary key (email);
+ERROR 1062 (23000): Duplicate entry '' for key 'PRIMARY'
+MariaDB [park]> alter table signup add primary key (email);
+ERROR 1062 (23000): Duplicate entry '' for key 'PRIMARY'
+MariaDB [park]> select * from signup;
++------+------------+----------------+----------+
+| name | phone      | email          | password |
++------+------------+----------------+----------+
+| mona |            |                |          |
+| mona | 6374131854 |                | hello    |
+| mona | 6374131854 |                | mona     |
+| mona | 6374131854 | mona@gmail.com | kmona    |
++------+------------+----------------+----------+
+4 rows in set (0.001 sec)
+
+MariaDB [park]> delete from signup where email="";
+Query OK, 3 rows affected (0.007 sec)
+
+MariaDB [park]> alter table signup add primary key (email);
+Query OK, 0 rows affected (0.044 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [park]> alter table signup add constraint not null (email);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'not null (email)' at line 1
+MariaDB [park]> alter table signup modify column email varchar(30) not null;
+Query OK, 0 rows affected (0.006 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [park]> create table transaction(adult number,child number,total number,foreign key(email)references signup(email);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'child number,total number,foreign key(email)references signup(email)' at line 1
+MariaDB [park]> create table transaction(adult number,child number,total number,foreign key (email) references signup(email);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'child number,total number,foreign key (email) references signup(email)' at line 1
+MariaDB [park]> create table transaction(adult number,child number,total number,email vrachar(30),foreign key (email) references signup(email);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'child number,total number,email vrachar(30),foreign key (email) references si...' at line 1
+MariaDB [park]> create table transaction(adult number,child number,total number,email varchar(30),foreign key (email) references signup(email);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'child number,total number,email varchar(30),foreign key (email) references si...' at line 1
+MariaDB [park]> create table transaction(adult int,child int,total int,email varchar(30),foreign key (email) references signup(email);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [park]> create table transaction(adult int,child int,total int,email varchar(30),foreign key (email) references signup(email));
+Query OK, 0 rows affected (0.026 sec)
+
+MariaDB [park]>
+ create table transaction(t_id int primary key auto_increment,adult int, child int, total int,dateandtime datetime default current_timestamp,email varchar(30),foreign key(email) references signup(email));
+Query OK, 0 rows affected (0.021 sec)

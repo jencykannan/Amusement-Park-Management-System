@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="get">
+    <input type="text" class="text" id="name" placeholder="Name"><br>
+    <input type="date" class="dob" id="dob" placeholder="DOB:"><br>
+    <input type="textarea" class="text" id="address" rows="5" cols="50" placeholder="address"><br>
+    <input type="email" class="text" id="email" placeholder="email"><br>
+    <input type="number" class="number" id="number" placeholder="phone number"><br>
+    <input type="number" class="number" id="height" placeholder="height" max="250" min="90"><br>
+    <input type="button" value="ADD PERSON" onclick="add()">
+</form>
+<?php
+function add()
+{
+     $name=$_GET['name'];
+     $date=$_GET['dob'];
+     $address=$_GET['address'];
+     $email=$GET['email'];
+     $phone_number=%GET['number'];
+     $height=$_GET['height'];
+     echo $name;
+}
+?>
+
+
+
+</body>
+</html>

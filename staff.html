@@ -1,0 +1,57 @@
+<!-- staff.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .options {
+            margin-top: 20px;
+        }
+
+        .options button {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Staff Dashboard</h2>
+        
+        <div class="options">
+            <button class="btn" onclick="redirectTo('rides.html')">Rides</button>
+            <button class="btn" onclick="redirectTo('visitor-details.html')">Visitor Details</button>
+            <button class="btn" onclick="redirectTo('facilities.html')">Facilities</button>
+        </div>
+    </div>
+
+    <script>
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
+
+</body>
+</html>

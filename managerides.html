@@ -1,0 +1,211 @@
+<!-- rides.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rides</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .edit-form {
+            text-align: left;
+            display: none;
+        }
+
+        .edit-form label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .edit-form input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Rides Details</h2>
+
+        <!-- Rides Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Ride ID</th>
+                    <th onclick="sortTable(1)">Ride Name</th>
+                    <th onclick="sortTable(2)">Ride Type</th>
+                    <th onclick="sortTable(3)">Duration</th>
+                    <th onclick="sortTable(4)">Location</th>
+                    <th onclick="sortTable(5)">Height Restriction</th>
+                    <th onclick="sortTable(6)">Weight Restriction</th>
+                    <th onclick="sortTable(7)">Age Restriction</th>
+                </tr>
+            </thead>
+            <tbody id="ridesTableBody">
+                <!-- Ride details will be dynamically inserted here -->
+            </tbody>
+        </table>
+
+        <!-- Edit Form -->
+        <div class="edit-form" id="editForm">
+            <h3>Edit Ride Details</h3>
+            <label for="editRideName">Ride Name:</label>
+            <input type="text" id="editRideName" name="editRideName">
+
+            <label for="editRideType">Ride Type:</label>
+            <input type="text" id="editRideType" name="editRideType">
+
+            <label for="editDuration">Duration:</label>
+            <input type="number" id="editDuration" name="editDuration">
+
+            <label for="editLocation">Location:</label>
+            <input type="text" id="editLocation" name="editLocation">
+
+            <label for="editHeightRestriction">Height Restriction:</label>
+            <input type="number" id="editHeightRestriction" name="editHeightRestriction">
+
+            <label for="editWeightRestriction">Weight Restriction:</label>
+            <input type="number" id="editWeightRestriction" name="editWeightRestriction">
+
+            <label for="editAgeRestriction">Age Restriction:</label>
+            <input type="number" id="editAgeRestriction" name="editAgeRestriction">
+
+            <button class="btn" onclick="saveChanges()">Save Changes</button>
+        </div>
+    </div>
+
+    <script>
+        const ridesData = [
+            [1, 'Maverick', 'Thrill', 15, 'Adventure Land', 95, 15, 10],
+            [2, 'Tea Cups', 'Family', 5, 'Fantasy Land', null, null, 3],
+            [3, 'ScaryHouse', 'Dark', 15, 'Horror Land', null, null, 12],
+            [4, 'Ferris Wheel', 'View', 30, 'Panorama Park', 100, 15, 5],
+            [5, 'Bumper Cars', 'Fun', 10, 'Joy City', 120, 45, 6],
+            [6, 'Drop Tower', 'Thrill', 45, 'Adventure Land', 140, 40, 16],
+            [7, 'Rodeo', 'Thrill', 60, 'Frontier Village', 150, 40, 16],
+            [8, 'KidCoaster', 'Family', 20, 'Fantasy Land', 80, 15, 3],
+            [9, 'Pirate Ship', 'Swing', 15, 'Seaside Cove', 110, 30, 8],
+            [10, 'Carousel', 'View', 15, 'Panorama Park', 90, 15, 3],
+            [11, 'Wave Pool', 'Water', 120, 'Aquatic Cove', 110, 30, 10],
+        ];
+
+        window.onload = function() {
+            populateTable();
+        };
+
+        function populateTable() {
+            const tableBody = document.getElementById('ridesTableBody');
+            tableBody.innerHTML = '';
+
+            for (const ride of ridesData) {
+                const row = document.createElement('tr');
+
+                for (const detail of ride) {
+                    const cell = document.createElement('td');
+                    cell.textContent = detail;
+                    row.appendChild(cell);
+                }
+
+                const editCell = document.createElement('td');
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.onclick = function() {
+                    showEditForm(ride);
+                };
+                editCell.appendChild(editButton);
+                row.appendChild(editCell);
+
+                tableBody.appendChild(row);
+            }
+        }
+
+        function showEditForm(ride) {
+            const editForm = document.getElementById('editForm');
+            for (let i = 0; i < ride.length; i++) {
+                const inputField = document.getElementById(edit+{capitalizeFirstLetter(ridesColumns[i])});
+                if (inputField) {
+                    inputField.value = ride[i];
+                }
+            }
+
+            editForm.style.display = 'block';
+        }
+
+        // Function to save changes (placeholder)
+        function saveChanges() {
+            alert('Changes saved!');
+        }
+
+        // Function to capitalize the first letter of a string
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        // Function to sort table based on column index
+        function sortTable(columnIndex) {
+            ridesData.sort((a, b) => {
+                if (a[columnIndex] > b[columnIndex]) return 1;
+                if (a[columnIndex] < b[columnIndex]) return -1;
+                return 0;
+html
+            });
+
+            populateTable();
+        }
+    </script>
+
+</body>
+</html>
